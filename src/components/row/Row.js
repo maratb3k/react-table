@@ -1,5 +1,6 @@
-import React, {useEffect, useState, Fragment} from "react";
+import {useEffect, useState, Fragment} from "react";
 import './Row.css';
+import Button from '../button/Button';
 
 function Row(props) {
     const [rows, setRows] = useState([]);
@@ -28,6 +29,7 @@ function Row(props) {
                         <th>{row.id}</th>
                         <th>{row.title}</th>
                         <th>{row.body}</th>
+                        <th><Button /></th>
                     </tr>
                 </Fragment>
             ))}
