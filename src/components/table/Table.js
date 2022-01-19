@@ -1,7 +1,9 @@
 import Row from "../row/Row";
 import './Table.css';
 
+
 function Table(props) {
+
     return (
         <div className="table">
             <table>
@@ -13,7 +15,7 @@ function Table(props) {
                         <th>Description</th>
                     </tr>
                 </thead>
-                <Row />
+                <Row rows={props.rows} setRows={props.setRows} />
             </table>
         </div>
     );

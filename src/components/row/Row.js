@@ -1,9 +1,9 @@
-import {useEffect, useState, Fragment} from "react";
+import {useEffect, Fragment} from "react";
 import './Row.css';
 import Button from '../button/Button';
 
 function Row(props) {
-    const [rows, setRows] = useState([]);
+    const {rows, setRows} = props;
 
     useEffect(() => {
         const url = "https://jsonplaceholder.typicode.com/posts";
