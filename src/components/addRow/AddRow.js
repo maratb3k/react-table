@@ -1,18 +1,19 @@
 import "./AddRow.css";
-import {useState} from "react";
+
 
 function AddRow(props) {
-    const {addFormData, setAddFormData, rows, setRows} = props;
+    const {addFormData, setAddFormData, rows, setRows, forChangingData} = props;
 
     const getNewData = (event) => {
-        event.preventDefault();
+        // event.preventDefault();
 
-        const fieldName = event.target.getAttribute("name");
-        const fieldValue = event.target.value;
+        // const fieldName = event.target.getAttribute("name");
+        // const fieldValue = event.target.value;
 
-        const newFormData = { ...addFormData};
-        newFormData[fieldName] = fieldValue;
-        setAddFormData(newFormData);
+        // const newFormData = { ...addFormData};
+        // newFormData[fieldName] = fieldValue;
+        // setAddFormData(newFormData);
+        forChangingData(event, "add");
     };
 
     const addNewDataButton = (event) => {

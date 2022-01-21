@@ -6,17 +6,24 @@ function Table(props) {
 
     return (
         <div className="table">
-            <table>
-                <thead className="tableHead">
-                    <tr>
-                        <th>userId</th>
-                        <th>№</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <Row rows={props.rows} setRows={props.setRows} />
-            </table>
+            <form>
+                <table>
+                    <thead className="tableHead">
+                        <tr>
+                            <th>userId</th>
+                            <th>№</th>
+                            <th>Title</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <Row rows={props.rows} setRows={props.setRows} 
+                        isEditMode={props.isEditMode} setIsEditMode={props.setIsEditMode} 
+                        forChangingData={props.forChangingData}
+                        editFormData={props.editFormData} setEditFormData={props.setEditFormData}
+                        editId={props.editId} setEditId={props.setEditId} forSavingEdit={props.forSavingEdit}
+                    />
+                </table>
+            </form>
         </div>
     );
 }

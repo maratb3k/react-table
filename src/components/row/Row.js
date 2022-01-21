@@ -1,9 +1,10 @@
-import {useEffect, Fragment} from "react";
+import {useEffect, Fragment, useState} from "react";
 import './Row.css';
-import Button from '../button/Button';
+import RowInfo from '../rowInfo/RowInfo';
+import EditButton from '../editButton/EditButton';
 
 function Row(props) {
-    const {rows, setRows} = props;
+    const {rows, setRows, forChangingData, editFormData, setEditFormData, editId, setEditId} = props;
 
     useEffect(() => {
         const url = "https://jsonplaceholder.typicode.com/posts";
@@ -20,17 +21,29 @@ function Row(props) {
         fetchData();
     }, []);
 
+    const editRow = (event, row) => {
+        event.preventDefault();
+        setEditId(row.id);      
+        const editValues = {
+            userId: row.userId,
+            id: row.id,
+            title: row.title,
+            body: row.body
+        };
+        setEditFormData(editValues);
+    };
+
     return (
         <tbody className="table-body">
             {rows.map(row => (
                 <Fragment key={row.id}>
-                    <tr>
-                        <th>{row.userId}</th>
-                        <th>{row.id}</th>
-                        <th>{row.title}</th>
-                        <th>{row.body}</th>
-                        <th><Button /></th>
-                    </tr>
+                    {editId === row.id ? (
+                        <EditButton editFormData={editFormData} setEditFormData={setEditFormData} 
+                            forChangingData={forChangingData} forSavingEdit={props.forSavingEdit}
+                        />
+                    ) : (
+                        <RowInfo row={row} editRow={editRow} />
+                    )}
                 </Fragment>
             ))}
         </tbody>

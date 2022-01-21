@@ -4,18 +4,64 @@ import AddRow from './components/addRow/AddRow';
 import {useState} from 'react';
 
 function App() {
+  // const [isEditMode, setIsEditMode] = useState(false);
   const [rows, setRows] = useState([]);
+  const [editId, setEditId] = useState(null); 
   const [addFormData, setAddFormData] = useState({
-    userId: 0,
-    id: 0,
+    userId: null,
+    id: null,
+    title: "",
+    body: ""
+  });
+  const [editFormData, setEditFormData] = useState({
+    userId: null,
+    id: null,
     title: "",
     body: ""
   });
 
+
+  const forChangingData = (event, mode) => {
+    event.preventDefault();
+
+    const fieldName = event.target.getAttribute("name");
+    const fieldValue = event.target.value;
+
+    if(mode === "add") {
+      const newFormData = { ...addFormData};
+      newFormData[fieldName] = fieldValue;
+      setAddFormData(newFormData);
+    }
+    else if(mode === "edit") {
+      const newFormData = { ...editFormData};
+      newFormData[fieldName] = fieldValue;
+      setEditFormData(newFormData);
+    } 
+  }
+
+  const forSavingEdit = (event) => {
+    event.preventDefault();
+    const editedData = {
+      userId: editFormData.userId,
+      id: editId,
+      title: editFormData.title,
+      body: editFormData.body
+    }
+    const newRows = [...rows];
+    const found = rows.findIndex(row => row.id === editId);
+    newRows[found] = editedData;
+    setRows(newRows);
+    setEditId(null);
+  }
+
   return (
     <div className="App">
-      <AddRow addFormData={addFormData} setAddFormData={setAddFormData} rows={rows} setRows={setRows} />
-      <Table rows={rows} setRows={setRows} />
+      <AddRow addFormData={addFormData} setAddFormData={setAddFormData} rows={rows} setRows={setRows} 
+        forChangingData={forChangingData} 
+      />
+      <Table rows={rows} setRows={setRows} editFormData={editFormData} setEditFormData={setEditFormData} 
+        forChangingData={forChangingData} editId={editId} setEditId={setEditId} forSavingEdit={forSavingEdit}
+      />
     </div>
   );
 }
