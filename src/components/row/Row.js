@@ -42,7 +42,7 @@ function Row(props) {
                             forChangingData={forChangingData} forSavingEdit={props.forSavingEdit}
                         />
                     ) : (
-                        <RowInfo row={row} editRow={editRow} />
+                        <RowInfo row={row} editRow={editRow} deleteRowButton={props.deleteRowButton} />
                     )}
                 </Fragment>
             ))}

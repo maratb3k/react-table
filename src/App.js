@@ -54,6 +54,13 @@ function App() {
     setEditId(null);
   }
 
+  const deleteRowButton = (deletedRow) => {
+    const newRows = [...rows];
+    const ind = rows.findIndex(row => row.id === deletedRow.id);
+    newRows.splice(ind, 1);
+    setRows(newRows);
+  }
+
   return (
     <div className="App">
       <AddRow addFormData={addFormData} setAddFormData={setAddFormData} rows={rows} setRows={setRows} 
@@ -61,6 +68,7 @@ function App() {
       />
       <Table rows={rows} setRows={setRows} editFormData={editFormData} setEditFormData={setEditFormData} 
         forChangingData={forChangingData} editId={editId} setEditId={setEditId} forSavingEdit={forSavingEdit}
+        deleteRowButton={deleteRowButton}
       />
     </div>
   );

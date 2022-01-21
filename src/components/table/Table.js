@@ -21,6 +21,7 @@ function Table(props) {
                         forChangingData={props.forChangingData}
                         editFormData={props.editFormData} setEditFormData={props.setEditFormData}
                         editId={props.editId} setEditId={props.setEditId} forSavingEdit={props.forSavingEdit}
+                        deleteRowButton={props.deleteRowButton}
                     />
                 </table>
             </form>
